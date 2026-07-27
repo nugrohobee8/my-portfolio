@@ -1,0 +1,77 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum ArticleStatus {
+  draft
+  published
+}
+
+model Article {
+  id          String        @id @default(cuid())
+  title       String
+  slug        String        @unique
+  content     String        @db.Text
+  coverImage  String?       @map("cover_image")
+  tags        String[]      @default([])
+  status      ArticleStatus @default(draft)
+  publishedAt DateTime?     @map("published_at")
+  createdAt   DateTime      @default(now()) @map("created_at")
+  updatedAt   DateTime      @updatedAt @map("updated_at")
+
+  @@map("articles")
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String   @db.Text
+  coverImage  String?  @map("cover_image")
+  techStack   String[] @default([]) @map("tech_stack")
+  demoUrl     String?  @map("demo_url")
+  repoUrl     String?  @map("repo_url")
+  isFeatured  Boolean  @default(false) @map("is_featured")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("projects")
+}
+
+enum SkillCategory {
+  frontend
+  backend
+  database
+  devops
+  tools
+  other
+}
+
+model Skill {
+  id        String        @id @default(cuid())
+  name      String
+  category  SkillCategory
+  icon      String?
+  level     Int? // opsional, misal 1-5
+  createdAt DateTime      @default(now()) @map("created_at")
+
+  @@map("skills")
+}
+
+model Experience {
+  id          String    @id @default(cuid())
+  company     String
+  position    String
+  description String    @db.Text
+  startDate   DateTime  @map("start_date")
+  endDate     DateTime? @map("end_date") // null = masih bekerja di sana
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  @@map("experiences")
+}

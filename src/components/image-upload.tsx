@@ -6,9 +6,11 @@ import { createClient } from '@/lib/supabase/client'
 type ImageUploadProps = {
     value: string
     onChange: (url: string) => void
+    bucket?: string
 }
 
-export function ImageUpload({ value, onChange }: ImageUploadProps) {
+
+export function ImageUpload({ value, onChange, bucket = 'article-covers' }: ImageUploadProps) {
     const [isUploading, setIsUploading] = useState(false)
     const [error, setError] = useState<string | null>(null)
 
@@ -37,7 +39,7 @@ export function ImageUpload({ value, onChange }: ImageUploadProps) {
         const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${fileExt}`
 
         const { error: uploadError } = await supabase.storage
-            .from('article-covers')
+            .from(bucket)
             .upload(fileName, file, { cacheControl: '3600', upsert: false })
 
         setIsUploading(false)
@@ -48,7 +50,7 @@ export function ImageUpload({ value, onChange }: ImageUploadProps) {
         }
 
         const { data } = supabase.storage
-            .from('article-covers')
+            .from(bucket)
             .getPublicUrl(fileName)
 
         onChange(data.publicUrl)

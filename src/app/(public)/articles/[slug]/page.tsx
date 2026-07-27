@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { prisma } from '@/lib/prisma'
 
+export const dynamic = "force-dynamic"
+
 type ArticleDetailPageProps = {
     params: Promise<{ slug: string }>
 }

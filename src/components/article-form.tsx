@@ -92,7 +92,7 @@ export function ArticleForm({ mode, articleId, initialValues }: ArticleFormProps
                     className="w-full rounded border px-3 py-2 text-sm font-mono"
                 />
                 <p className="mt-1 text-xs text-gray-500">
-                    URL artikel: /blog/{slug || '...'}
+                    URL artikel: /articles/{slug || '...'}
                 </p>
             </div>
 

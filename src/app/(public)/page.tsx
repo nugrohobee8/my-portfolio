@@ -11,8 +11,8 @@ const CATEGORY_LABELS: Record<string, string> = {
 }
 
 function formatDate(date: Date | null) {
-    if (!date) return 'Sekarang'
-    return date.toLocaleDateString('id-ID', { month: 'long', year: 'numeric' })
+    if (!date) return 'Current'
+    return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
 }
 
 export default async function HomePage() {
@@ -36,31 +36,32 @@ export default async function HomePage() {
                     $ whoami
                 </p>
                 <h1 className="mt-3 font-[family-name:var(--font-serif)] text-5xl font-medium text-[#1B1B18]">
-                    Nama Kamu Di Sini
+                    DIAN BAYU NUGROHO
                 </h1>
                 <p className="mt-4 max-w-xl text-lg text-[#6B6A63]">
-                    Full-stack developer yang suka membangun produk dari nol — dari
-                    desain, backend, sampai deployment. Tulis juga tentang proses belajar
-                    di{' '}
+                    An experienced Software Developer with a track record of building applications from
+                    the ground up through to production — from architecture design and feature development to performance optimization.
+                    Skilled at solving technical problems systematically and enjoys exploring new technologies to improve efficiency. Results-oriented, detail-focused,
+                    and comfortable working both collaboratively in a team and independently.{' '}
                     <Link href="/articles" className="text-[#2F5D50] underline underline-offset-2">
-                        blog saya
+                        Read my articles
                     </Link>
                     .
                 </p>
                 <div className="mt-6 flex gap-4 font-[family-name:var(--font-mono)] text-sm">
 
-                    <a href="mailto:email@kamu.com"
+                    <a href="mailto:nugrohobee8@gmail.com"
                         className="text-[#2F5D50] hover:underline"
                     >
-                        email@kamu.com
+                        nugrohobee8@gmail.com
                     </a>
                     <a
-                        href="https://github.com/username"
+                        href="https://github.com/nugrohobee8"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-[#2F5D50] hover:underline"
                     >
-                        github.com/username
+                        github.com/nugrohobee8
                     </a>
                 </div>
             </section>
@@ -69,10 +70,10 @@ export default async function HomePage() {
             {experiences.length > 0 && (
                 <section className="mx-auto max-w-3xl border-t border-[#DEDCD3] px-6 py-16">
                     <p className="font-[family-name:var(--font-mono)] text-xs tracking-wide text-[#6B6A63]">
-                        ~/experience
+                        ~/experiences
                     </p>
                     <h2 className="mt-2 font-[family-name:var(--font-serif)] text-2xl font-medium text-[#1B1B18]">
-                        Pengalaman Kerja
+                        Experience
                     </h2>
 
                     <div className="mt-8 space-y-8 border-l border-[#DEDCD3] pl-6">
@@ -203,7 +204,7 @@ export default async function HomePage() {
             }
 
             <footer className="border-t border-[#DEDCD3] px-6 py-10 text-center font-[family-name:var(--font-mono)] text-xs text-[#6B6A63]">
-                © {new Date().getFullYear()} — dibangun dengan Next.js
+                © <b>{new Date().getFullYear()} — Dian Bayu Nugroho</b> All rights reserved.
             </footer>
         </div >
     )

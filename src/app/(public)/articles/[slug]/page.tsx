@@ -46,7 +46,7 @@ export default async function ArticleDetailPage({ params }: ArticleDetailPagePro
                     href="/articles"
                     className="inline-flex items-center gap-2 text-sm font-medium text-[#2F5D50] hover:text-[#1B1B18] transition-colors mb-8"
                 >
-                    ← Kembali ke Artikel
+                    ← Back to Articles
                 </Link>
 
                 {article.coverImage && (

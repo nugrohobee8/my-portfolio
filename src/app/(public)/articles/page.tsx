@@ -19,13 +19,13 @@ export default async function ArticlePage() {
         <div className="min-h-screen bg-[#F9F8F4]">
             <div className="mx-auto max-w-3xl px-6 py-16">
                 <div className="mb-12">
-                    <h1 className="font-[family-name:var(--font-serif)] text-4xl font-medium text-[#1B1B18] sm:text-5xl">Artikel</h1>
-                    <p className="mt-4 text-lg text-[#6B6A63]">Kumpulan artikel dan insights seputar teknologi, desain, dan pengembangan web.</p>
+                    <h1 className="font-[family-name:var(--font-serif)] text-4xl font-medium text-[#1B1B18] sm:text-5xl">Articles</h1>
+                    {/* <p className="mt-4 text-lg text-[#6B6A63]">Kumpulan artikel dan insights seputar teknologi, desain, dan pengembangan web.</p> */}
                 </div>
 
                 {articles.length === 0 ? (
                     <div className="rounded-lg border border-[#DEDCD3] bg-white p-12 text-center">
-                        <p className="text-lg text-[#6B6A63]">Belum ada artikel yang dipublikasikan.</p>
+                        <p className="text-lg text-[#6B6A63]">No Articles.</p>
                     </div>
                 ) : (
                     <div className="grid gap-6 sm:grid-cols-2">

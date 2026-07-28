@@ -31,7 +31,7 @@ export default async function HomePage() {
     return (
         <div className="min-h-screen bg-[#F9F8F4]">
             {/* Hero */}
-            <section className="mx-auto max-w-3xl px-6 py-20">
+            <section id="home" className="mx-auto max-w-3xl px-6 py-20">
                 <p className="font-[family-name:var(--font-mono)] text-xs tracking-wide text-[#6B6A63]">
                     $ whoami
                 </p>
@@ -68,7 +68,7 @@ export default async function HomePage() {
 
             {/* Experience */}
             {experiences.length > 0 && (
-                <section className="mx-auto max-w-3xl border-t border-[#DEDCD3] px-6 py-16">
+                <section id="experience" className="mx-auto max-w-3xl border-t border-[#DEDCD3] px-6 py-16">
                     <p className="font-[family-name:var(--font-mono)] text-xs tracking-wide text-[#6B6A63]">
                         ~/experiences
                     </p>
@@ -94,7 +94,7 @@ export default async function HomePage() {
 
             {/* Projects */}
             {projects.length > 0 && (
-                <section className="mx-auto max-w-3xl border-t border-[#DEDCD3] px-6 py-16">
+                <section id="projects" className="mx-auto max-w-3xl border-t border-[#DEDCD3] px-6 py-16">
                     <p className="font-[family-name:var(--font-mono)] text-xs tracking-wide text-[#6B6A63]">
                         ~/projects
                     </p>
@@ -172,7 +172,7 @@ export default async function HomePage() {
             {/* Skills */}
             {
                 skills.length > 0 && (
-                    <section className="mx-auto max-w-3xl border-t border-[#DEDCD3] px-6 py-16">
+                    <section id="skills" className="mx-auto max-w-3xl border-t border-[#DEDCD3] px-6 py-16">
                         <p className="font-[family-name:var(--font-mono)] text-xs tracking-wide text-[#6B6A63]">
                             ~/skills
                         </p>

@@ -1,9 +1,17 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: #F9F8F4;
   color: #1B1B18;
+}
+
+section[id] {
+  scroll-margin-top: 5rem;
 }
 
 @theme inline {

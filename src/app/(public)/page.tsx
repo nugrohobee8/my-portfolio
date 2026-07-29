@@ -48,10 +48,10 @@ export default async function HomePage() {
                     </Link>
                     .
                 </p>
-                <div className="mt-6 flex gap-4 font-[family-name:var(--font-mono)] text-sm">
+                <div className="mt-6 flex flex-wrap gap-2 font-[family-name:var(--font-mono)] text-sm">
 
                     <a href="mailto:nugrohobee8@gmail.com"
-                        className="text-[#2F5D50] hover:underline"
+                        className="text-[#2F5D50] hover:underline break-all"
                     >
                         nugrohobee8@gmail.com
                     </a>
@@ -59,7 +59,7 @@ export default async function HomePage() {
                         href="https://github.com/nugrohobee8"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[#2F5D50] hover:underline"
+                        className="text-[#2F5D50] hover:underline break-all"
                     >
                         github.com/nugrohobee8
                     </a>

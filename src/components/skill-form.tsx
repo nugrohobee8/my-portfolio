@@ -2,6 +2,7 @@
 
 import { useRef, useState, useTransition } from 'react'
 import { createSkill } from '@/lib/actions/skill'
+import { PlusIcon } from '@/components/admin/icons'
 
 const CATEGORIES = [
     { value: 'frontend', label: 'Frontend' },
@@ -11,6 +12,10 @@ const CATEGORIES = [
     { value: 'tools', label: 'Tools' },
     { value: 'other', label: 'Lainnya' },
 ] as const
+
+const inputClass =
+    'w-full rounded-md border border-[#1B1B18]/15 bg-white px-3 py-2 text-sm text-[#1B1B18] placeholder-[#1B1B18]/40 transition-colors focus:border-[#2F5D50] focus:outline-none focus:ring-1 focus:ring-[#2F5D50]'
+const labelClass = 'mb-1.5 block text-xs font-medium text-[#1B1B18]/70'
 
 export function SkillForm() {
     const formRef = useRef<HTMLFormElement>(null)
@@ -34,68 +39,66 @@ export function SkillForm() {
     }
 
     return (
-        <form
-            ref={formRef}
-            onSubmit={handleSubmit}
-            className="flex flex-wrap items-end gap-3 rounded-lg border p-4"
-        >
-            <div className="flex-1 min-w-[140px]">
-                <label className="mb-1 block text-xs font-medium">Nama Skill</label>
-                <input
-                    name="name"
-                    type="text"
-                    required
-                    placeholder="Next.js"
-                    className="w-full rounded border px-3 py-2 text-sm"
-                />
-            </div>
+        <div className="rounded-lg border border-[#1B1B18]/10 bg-white p-5">
+            <h2 className="mb-4 text-sm font-medium text-[#1B1B18]">Tambah Skill</h2>
+            <form ref={formRef} onSubmit={handleSubmit} className="flex flex-wrap items-end gap-3">
+                <div className="min-w-[160px] flex-1">
+                    <label className={labelClass}>Nama Skill</label>
+                    <input
+                        name="name"
+                        type="text"
+                        required
+                        placeholder="Next.js"
+                        className={inputClass}
+                    />
+                </div>
 
-            <div className="min-w-[140px]">
-                <label className="mb-1 block text-xs font-medium">Kategori</label>
-                <select
-                    name="category"
-                    required
-                    className="w-full rounded border px-3 py-2 text-sm"
+                <div className="min-w-[140px]">
+                    <label className={labelClass}>Kategori</label>
+                    <select name="category" required className={inputClass}>
+                        {CATEGORIES.map((cat) => (
+                            <option key={cat.value} value={cat.value}>
+                                {cat.label}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+
+                <div className="w-24">
+                    <label className={labelClass}>Level (1-5)</label>
+                    <input
+                        name="level"
+                        type="number"
+                        min={1}
+                        max={5}
+                        placeholder="opsional"
+                        className={inputClass}
+                    />
+                </div>
+
+                <div className="min-w-[160px] flex-1">
+                    <label className={labelClass}>Icon (opsional)</label>
+                    <input
+                        name="icon"
+                        type="text"
+                        placeholder="nama icon / URL"
+                        className={inputClass}
+                    />
+                </div>
+
+                <button
+                    type="submit"
+                    disabled={isPending}
+                    className="inline-flex items-center gap-2 rounded-md bg-[#2F5D50] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#254A3F] disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                    {CATEGORIES.map((cat) => (
-                        <option key={cat.value} value={cat.value}>
-                            {cat.label}
-                        </option>
-                    ))}
-                </select>
-            </div>
+                    <PlusIcon className="h-4 w-4" />
+                    {isPending ? 'Menyimpan...' : 'Tambah'}
+                </button>
 
-            <div className="w-24">
-                <label className="mb-1 block text-xs font-medium">Level (1-5)</label>
-                <input
-                    name="level"
-                    type="number"
-                    min={1}
-                    max={5}
-                    placeholder="opsional"
-                    className="w-full rounded border px-3 py-2 text-sm"
-                />
-            </div>
-
-            <div className="flex-1 min-w-[140px]">
-                <label className="mb-1 block text-xs font-medium">Icon (opsional)</label>
-                <input
-                    name="icon"
-                    type="text"
-                    placeholder="nama icon / URL"
-                    className="w-full rounded border px-3 py-2 text-sm"
-                />
-            </div>
-
-            <button
-                type="submit"
-                disabled={isPending}
-                className="rounded bg-black px-4 py-2 text-sm font-medium text-white disabled:opacity-50"
-            >
-                {isPending ? 'Menyimpan...' : 'Tambah'}
-            </button>
-
-            {error && <p className="w-full text-sm text-red-600">{error}</p>}
-        </form>
+                {error && (
+                    <p className="w-full text-xs text-red-600">{error}</p>
+                )}
+            </form>
+        </div>
     )
 }

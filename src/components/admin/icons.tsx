@@ -169,6 +169,14 @@ export function StarIcon({ className }: IconProps) {
     );
 }
 
+export function XIcon({ className }: IconProps) {
+    return (
+        <svg className={className} viewBox="0 0 20 20" fill="none">
+            <path d="M5 5l10 10M15 5 5 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        </svg>
+    );
+}
+
 export function InboxIcon({ className }: IconProps) {
     return (
         <svg className={className} viewBox="0 0 20 20" fill="none">

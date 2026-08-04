@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import slugify from 'slugify'
+import type { ArticleStatus } from '@prisma/client'
 import { prisma } from '@/lib/prisma'
 import { createClient } from '@/lib/supabase/server'
 import { articleSchema } from '@/lib/validations/article'
@@ -22,10 +23,41 @@ async function requireAdmin() {
     }
 }
 
-export async function getArticles() {
-    return prisma.article.findMany({
-        orderBy: { createdAt: 'desc' },
-    })
+export interface GetArticlesParams {
+    query?: string
+    status?: 'all' | ArticleStatus
+    page?: number
+    pageSize?: number
+}
+
+export async function getArticles({
+    query = '',
+    status = 'all',
+    page = 1,
+    pageSize = 10,
+}: GetArticlesParams = {}) {
+    const where = {
+        ...(query ? { title: { contains: query, mode: 'insensitive' as const } } : {}),
+        ...(status !== 'all' ? { status } : {}),
+    }
+
+    const [articles, total] = await Promise.all([
+        prisma.article.findMany({
+            where,
+            orderBy: { createdAt: 'desc' },
+            skip: (page - 1) * pageSize,
+            take: pageSize,
+        }),
+        prisma.article.count({ where }),
+    ])
+
+    return {
+        articles,
+        total,
+        page,
+        pageSize,
+        totalPages: Math.max(1, Math.ceil(total / pageSize)),
+    }
 }
 
 export async function getArticleById(id: string) {

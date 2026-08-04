@@ -38,7 +38,7 @@ export async function proxy(request: NextRequest) {  // <- nama diubah dari midd
     }
 
     if (isLoginRoute && user) {
-        const redirectUrl = new URL('/admin/articles', request.url)
+        const redirectUrl = new URL('/admin', request.url)
         return NextResponse.redirect(redirectUrl)
     }
 

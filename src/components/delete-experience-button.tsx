@@ -24,9 +24,10 @@ export function DeleteExperienceButton({ experienceId }: { experienceId: string 
 
     return (
         <button
+            type="button"
             onClick={handleDelete}
             disabled={isPending}
-            className="text-sm text-red-600 hover:underline disabled:opacity-50"
+            className="shrink-0 text-xs font-medium text-red-600 transition-colors hover:underline disabled:opacity-50"
         >
             {isPending ? 'Menghapus...' : 'Hapus'}
         </button>

@@ -143,6 +143,24 @@ export function LogoutIcon({ className }: IconProps) {
     );
 }
 
+export function SearchIcon({ className }: IconProps) {
+    return (
+        <svg className={className} viewBox="0 0 20 20" fill="none">
+            <path
+                d="M13.5 13.5 17.5 17.5"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+            />
+            <path
+                d="M9 15a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z"
+                stroke="currentColor"
+                strokeWidth="1.5"
+            />
+        </svg>
+    );
+}
+
 export function InboxIcon({ className }: IconProps) {
     return (
         <svg className={className} viewBox="0 0 20 20" fill="none">

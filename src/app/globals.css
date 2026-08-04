@@ -14,6 +14,14 @@ section[id] {
   scroll-margin-top: 5rem;
 }
 
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  color: rgba(27, 27, 24, 0.35);
+  pointer-events: none;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

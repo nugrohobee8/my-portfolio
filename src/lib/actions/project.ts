@@ -22,10 +22,41 @@ async function requireAdmin() {
     }
 }
 
-export async function getProjects() {
-    return prisma.project.findMany({
-        orderBy: { createdAt: 'desc' },
-    })
+export interface GetProjectsParams {
+    query?: string
+    featured?: 'all' | 'featured' | 'not-featured'
+    page?: number
+    pageSize?: number
+}
+
+export async function getProjects({
+    query = '',
+    featured = 'all',
+    page = 1,
+    pageSize = 10,
+}: GetProjectsParams = {}) {
+    const where = {
+        ...(query ? { title: { contains: query, mode: 'insensitive' as const } } : {}),
+        ...(featured !== 'all' ? { isFeatured: featured === 'featured' } : {}),
+    }
+
+    const [projects, total] = await Promise.all([
+        prisma.project.findMany({
+            where,
+            orderBy: { createdAt: 'desc' },
+            skip: (page - 1) * pageSize,
+            take: pageSize,
+        }),
+        prisma.project.count({ where }),
+    ])
+
+    return {
+        projects,
+        total,
+        page,
+        pageSize,
+        totalPages: Math.max(1, Math.ceil(total / pageSize)),
+    }
 }
 
 export async function getProjectById(id: string) {

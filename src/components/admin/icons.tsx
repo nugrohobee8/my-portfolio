@@ -161,6 +161,14 @@ export function SearchIcon({ className }: IconProps) {
     );
 }
 
+export function StarIcon({ className }: IconProps) {
+    return (
+        <svg className={className} viewBox="0 0 20 20" fill="currentColor">
+            <path d="M10 2.5 12 7l4.5.6-3.3 3.2.8 4.6L10 13.2l-4 2.2.8-4.6L3.5 7.6 8 7l2-4.5Z" />
+        </svg>
+    );
+}
+
 export function InboxIcon({ className }: IconProps) {
     return (
         <svg className={className} viewBox="0 0 20 20" fill="none">

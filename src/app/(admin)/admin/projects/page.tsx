@@ -97,72 +97,119 @@ export default async function AdminProjectsPage({
                         )}
                     </div>
                 ) : (
-                    <div className="overflow-x-auto">
-                        <table className="w-full text-sm">
-                            <thead>
-                                <tr className="border-b border-[#1B1B18]/10 text-left font-mono text-xs uppercase text-[#1B1B18]/60">
-                                    <th className="px-4 py-3">Judul</th>
-                                    <th className="px-4 py-3">Tech Stack</th>
-                                    <th className="px-4 py-3">Featured</th>
-                                    <th className="px-4 py-3">Dibuat</th>
-                                    <th className="px-4 py-3 text-right">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {projects.map((project) => (
-                                    <tr
-                                        key={project.id}
-                                        className="border-b border-[#1B1B18]/5 transition-colors last:border-0 hover:bg-[#1B1B18]/[0.02]"
-                                    >
-                                        <td className="max-w-[220px] truncate px-4 py-3 font-medium text-[#1B1B18]">
-                                            {project.title}
-                                        </td>
-                                        <td className="px-4 py-3">
-                                            <div className="flex max-w-[280px] flex-wrap gap-1">
-                                                {project.techStack.slice(0, 3).map((tech) => (
-                                                    <span
-                                                        key={tech}
-                                                        className="rounded-full bg-[#1B1B18]/5 px-2 py-0.5 text-xs text-[#1B1B18]/70"
-                                                    >
-                                                        {tech}
-                                                    </span>
-                                                ))}
-                                                {project.techStack.length > 3 && (
-                                                    <span className="rounded-full bg-[#1B1B18]/5 px-2 py-0.5 text-xs text-[#1B1B18]/50">
-                                                        +{project.techStack.length - 3}
-                                                    </span>
-                                                )}
-                                            </div>
-                                        </td>
-                                        <td className="px-4 py-3">
-                                            {project.isFeatured ? (
-                                                <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-700">
-                                                    <StarIcon className="h-3 w-3" />
-                                                    Featured
-                                                </span>
-                                            ) : (
-                                                <span className="text-xs text-[#1B1B18]/30">—</span>
-                                            )}
-                                        </td>
-                                        <td className="px-4 py-3 font-mono text-xs text-[#1B1B18]/60">
-                                            {formatDate(project.createdAt)}
-                                        </td>
-                                        <td className="px-4 py-3">
-                                            <div className="flex items-center justify-end gap-4">
-                                                <Link
-                                                    href={`/admin/projects/${project.id}/edit`}
-                                                    className="text-xs font-medium text-[#2F5D50] hover:underline"
-                                                >
-                                                    Edit
-                                                </Link>
-                                                <DeleteProjectButton projectId={project.id} />
-                                            </div>
-                                        </td>
+                    <>
+                        <div className="hidden overflow-x-auto md:block">
+                            <table className="w-full text-sm">
+                                <thead>
+                                    <tr className="border-b border-[#1B1B18]/10 text-left font-mono text-xs uppercase text-[#1B1B18]/60">
+                                        <th className="px-4 py-3">Judul</th>
+                                        <th className="px-4 py-3">Tech Stack</th>
+                                        <th className="px-4 py-3">Featured</th>
+                                        <th className="px-4 py-3">Dibuat</th>
+                                        <th className="px-4 py-3 text-right">Aksi</th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
+                                </thead>
+                                <tbody>
+                                    {projects.map((project) => (
+                                        <tr
+                                            key={project.id}
+                                            className="border-b border-[#1B1B18]/5 transition-colors last:border-0 hover:bg-[#1B1B18]/[0.02]"
+                                        >
+                                            <td className="max-w-[220px] truncate px-4 py-3 font-medium text-[#1B1B18]">
+                                                {project.title}
+                                            </td>
+                                            <td className="px-4 py-3">
+                                                <div className="flex max-w-[280px] flex-wrap gap-1">
+                                                    {project.techStack.slice(0, 3).map((tech) => (
+                                                        <span
+                                                            key={tech}
+                                                            className="rounded-full bg-[#1B1B18]/5 px-2 py-0.5 text-xs text-[#1B1B18]/70"
+                                                        >
+                                                            {tech}
+                                                        </span>
+                                                    ))}
+                                                    {project.techStack.length > 3 && (
+                                                        <span className="rounded-full bg-[#1B1B18]/5 px-2 py-0.5 text-xs text-[#1B1B18]/50">
+                                                            +{project.techStack.length - 3}
+                                                        </span>
+                                                    )}
+                                                </div>
+                                            </td>
+                                            <td className="px-4 py-3">
+                                                {project.isFeatured ? (
+                                                    <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-700">
+                                                        <StarIcon className="h-3 w-3" />
+                                                        Featured
+                                                    </span>
+                                                ) : (
+                                                    <span className="text-xs text-[#1B1B18]/30">—</span>
+                                                )}
+                                            </td>
+                                            <td className="px-4 py-3 font-mono text-xs text-[#1B1B18]/60">
+                                                {formatDate(project.createdAt)}
+                                            </td>
+                                            <td className="px-4 py-3">
+                                                <div className="flex items-center justify-end gap-4">
+                                                    <Link
+                                                        href={`/admin/projects/${project.id}/edit`}
+                                                        className="text-xs font-medium text-[#2F5D50] hover:underline"
+                                                    >
+                                                        Edit
+                                                    </Link>
+                                                    <DeleteProjectButton projectId={project.id} />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <ul className="divide-y divide-[#1B1B18]/5 md:hidden">
+                            {projects.map((project) => (
+                                <li key={project.id} className="flex flex-col gap-2 p-4">
+                                    <div className="flex items-start justify-between gap-3">
+                                        <p className="font-medium text-[#1B1B18]">{project.title}</p>
+                                        {project.isFeatured ? (
+                                            <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-700">
+                                                <StarIcon className="h-3 w-3" />
+                                                Featured
+                                            </span>
+                                        ) : null}
+                                    </div>
+                                    <div className="flex flex-wrap gap-1">
+                                        {project.techStack.slice(0, 3).map((tech) => (
+                                            <span
+                                                key={tech}
+                                                className="rounded-full bg-[#1B1B18]/5 px-2 py-0.5 text-xs text-[#1B1B18]/70"
+                                            >
+                                                {tech}
+                                            </span>
+                                        ))}
+                                        {project.techStack.length > 3 && (
+                                            <span className="rounded-full bg-[#1B1B18]/5 px-2 py-0.5 text-xs text-[#1B1B18]/50">
+                                                +{project.techStack.length - 3}
+                                            </span>
+                                        )}
+                                    </div>
+                                    <div className="flex items-center justify-between gap-3">
+                                        <span className="font-mono text-xs text-[#1B1B18]/60">
+                                            {formatDate(project.createdAt)}
+                                        </span>
+                                        <div className="flex items-center gap-4">
+                                            <Link
+                                                href={`/admin/projects/${project.id}/edit`}
+                                                className="text-xs font-medium text-[#2F5D50] hover:underline"
+                                            >
+                                                Edit
+                                            </Link>
+                                            <DeleteProjectButton projectId={project.id} />
+                                        </div>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    </>
                 )}
 
                 <Pagination

@@ -20,7 +20,7 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Portfolio',
+  title: 'Dian Bayu Nugroho — Portfolio',
   description: 'Personal portfolio dan blog',
 }
 

@@ -98,61 +98,102 @@ export default async function AdminArticlesPage({
                         )}
                     </div>
                 ) : (
-                    <div className="overflow-x-auto">
-                        <table className="w-full text-sm">
-                            <thead>
-                                <tr className="border-b border-[#1B1B18]/10 text-left font-mono text-xs uppercase text-[#1B1B18]/60">
-                                    <th className="px-4 py-3">Judul</th>
-                                    <th className="px-4 py-3">Status</th>
-                                    <th className="px-4 py-3">Dibuat</th>
-                                    <th className="px-4 py-3 text-right">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {articles.map((article) => (
-                                    <tr
-                                        key={article.id}
-                                        className="border-b border-[#1B1B18]/5 transition-colors last:border-0 hover:bg-[#1B1B18]/[0.02]"
-                                    >
-                                        <td className="max-w-[280px] truncate px-4 py-3 font-medium text-[#1B1B18]">
-                                            {article.title}
-                                        </td>
-                                        <td className="px-4 py-3">
-                                            <span
-                                                className={`inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-xs font-medium ${article.status === 'published'
-                                                    ? 'bg-[#2F5D50]/10 text-[#2F5D50]'
-                                                    : 'bg-amber-100 text-amber-700'
-                                                    }`}
-                                            >
-                                                <span
-                                                    className={`h-1.5 w-1.5 rounded-full ${article.status === 'published'
-                                                        ? 'bg-[#2F5D50]'
-                                                        : 'bg-amber-600'
-                                                        }`}
-                                                    aria-hidden="true"
-                                                />
-                                                {article.status === 'published' ? 'Published' : 'Draft'}
-                                            </span>
-                                        </td>
-                                        <td className="px-4 py-3 font-mono text-xs text-[#1B1B18]/60">
-                                            {formatDate(article.createdAt)}
-                                        </td>
-                                        <td className="px-4 py-3">
-                                            <div className="flex items-center justify-end gap-4">
-                                                <Link
-                                                    href={`/admin/articles/${article.id}/edit`}
-                                                    className="text-xs font-medium text-[#2F5D50] hover:underline"
-                                                >
-                                                    Edit
-                                                </Link>
-                                                <DeleteArticleButton articleId={article.id} />
-                                            </div>
-                                        </td>
+                    <>
+                        <div className="hidden overflow-x-auto md:block">
+                            <table className="w-full text-sm">
+                                <thead>
+                                    <tr className="border-b border-[#1B1B18]/10 text-left font-mono text-xs uppercase text-[#1B1B18]/60">
+                                        <th className="px-4 py-3">Judul</th>
+                                        <th className="px-4 py-3">Status</th>
+                                        <th className="px-4 py-3">Dibuat</th>
+                                        <th className="px-4 py-3 text-right">Aksi</th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
+                                </thead>
+                                <tbody>
+                                    {articles.map((article) => (
+                                        <tr
+                                            key={article.id}
+                                            className="border-b border-[#1B1B18]/5 transition-colors last:border-0 hover:bg-[#1B1B18]/[0.02]"
+                                        >
+                                            <td className="max-w-[280px] truncate px-4 py-3 font-medium text-[#1B1B18]">
+                                                {article.title}
+                                            </td>
+                                            <td className="px-4 py-3">
+                                                <span
+                                                    className={`inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-xs font-medium ${article.status === 'published'
+                                                        ? 'bg-[#2F5D50]/10 text-[#2F5D50]'
+                                                        : 'bg-amber-100 text-amber-700'
+                                                        }`}
+                                                >
+                                                    <span
+                                                        className={`h-1.5 w-1.5 rounded-full ${article.status === 'published'
+                                                            ? 'bg-[#2F5D50]'
+                                                            : 'bg-amber-600'
+                                                            }`}
+                                                        aria-hidden="true"
+                                                    />
+                                                    {article.status === 'published' ? 'Published' : 'Draft'}
+                                                </span>
+                                            </td>
+                                            <td className="px-4 py-3 font-mono text-xs text-[#1B1B18]/60">
+                                                {formatDate(article.createdAt)}
+                                            </td>
+                                            <td className="px-4 py-3">
+                                                <div className="flex items-center justify-end gap-4">
+                                                    <Link
+                                                        href={`/admin/articles/${article.id}/edit`}
+                                                        className="text-xs font-medium text-[#2F5D50] hover:underline"
+                                                    >
+                                                        Edit
+                                                    </Link>
+                                                    <DeleteArticleButton articleId={article.id} />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <ul className="divide-y divide-[#1B1B18]/5 md:hidden">
+                            {articles.map((article) => (
+                                <li key={article.id} className="flex flex-col gap-2 p-4">
+                                    <div className="flex items-start justify-between gap-3">
+                                        <p className="font-medium text-[#1B1B18]">{article.title}</p>
+                                        <span
+                                            className={`inline-flex shrink-0 items-center gap-1.5 rounded-full px-2 py-0.5 text-xs font-medium ${article.status === 'published'
+                                                ? 'bg-[#2F5D50]/10 text-[#2F5D50]'
+                                                : 'bg-amber-100 text-amber-700'
+                                                }`}
+                                        >
+                                            <span
+                                                className={`h-1.5 w-1.5 rounded-full ${article.status === 'published'
+                                                    ? 'bg-[#2F5D50]'
+                                                    : 'bg-amber-600'
+                                                    }`}
+                                                aria-hidden="true"
+                                            />
+                                            {article.status === 'published' ? 'Published' : 'Draft'}
+                                        </span>
+                                    </div>
+                                    <div className="flex items-center justify-between gap-3">
+                                        <span className="font-mono text-xs text-[#1B1B18]/60">
+                                            {formatDate(article.createdAt)}
+                                        </span>
+                                        <div className="flex items-center gap-4">
+                                            <Link
+                                                href={`/admin/articles/${article.id}/edit`}
+                                                className="text-xs font-medium text-[#2F5D50] hover:underline"
+                                            >
+                                                Edit
+                                            </Link>
+                                            <DeleteArticleButton articleId={article.id} />
+                                        </div>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    </>
                 )}
 
                 <Pagination

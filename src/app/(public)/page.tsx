@@ -39,14 +39,10 @@ export default async function HomePage() {
                     DIAN BAYU NUGROHO
                 </h1>
                 <p className="mt-4 max-w-xl text-lg text-[#6B6A63]">
-                    An experienced Software Developer with a track record of building applications from
-                    the ground up through to production — from architecture design and feature development to performance optimization.
-                    Skilled at solving technical problems systematically and enjoys exploring new technologies to improve efficiency. Results-oriented, detail-focused,
-                    and comfortable working both collaboratively in a team and independently.{' '}
+                    Halo, aku Dian Bayu Nugroho — software engineer dengan pengalaman lebih dari 4 tahun, fokus di pengembangan aplikasi mobile pakai Flutter. Aku suka membangun sesuatu yang nggak cuma jalan, tapi juga terasa nyaman dipakai. Di luar coding, aku rutin olahraga dan selalu excited belajar hal baru — apapun itu, nggak harus yang berhubungan sama kerjaan. Buat aku, terus berkembang itu bukan cuma soal skill teknis, tapi juga cara hidup.{' '}
                     <Link href="/articles" className="text-[#2F5D50] underline underline-offset-2">
-                        Read my articles
+                        Baca artikelku
                     </Link>
-                    .
                 </p>
                 <div className="mt-6 flex flex-wrap gap-2 font-[family-name:var(--font-mono)] text-sm">
 
